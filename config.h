@@ -13,9 +13,6 @@
 #define LIGHT_THEME_CODE "-l"
 #define DARK_THEME_CODE ""
 
-#define KDE_DESKTOP_CODE "kde"
-#define GNOME_DESKTOP_CODE "gnome"
-
 #define BE_SCHEMER2_CODE "schemer2"
 #define BE_COLORTHIEF_CODE "colorthief"
 #define BE_COLORZ_CODE "colorz"
@@ -28,22 +25,23 @@
 #define ENABLE_CONFIG_NAME "ENABLE_WAL"
 #define WAL_BACKEND_NAME "WAL_BACKEND"
 
+#define DEFAULT_CONFIG_FILE_NAME "/.config/wal/theme.conf"
+
 class Config
 {
 private:
     bool enabled;
-    QString theme, desktopEnv, backEnd, accentColorCode;
+    QString theme, backEnd, accentColorCode;
+    void readDefaultConfig();
 public:
     Config();
 
     void setTheme(QString theme);
     void setAccentColorCode(QString code);
-    void setDesktopEnv(QString de);
     void setBackEnd(QString BE);
     void enable(int enable);
 
     QString getTheme();
-    QString getDesktopEnv();
     QString getAccentColorCode();
     QString getBackEnd();
     bool isEnabled();

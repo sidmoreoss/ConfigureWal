@@ -11,7 +11,7 @@ void SaveConfig::saveConfig(QString fn){
     QString fileName = fn;
 
     if (fileName.isEmpty()){
-        fileName = QDir::homePath() + DEFAULT_FILE_NAME;
+        fileName = QDir::homePath() + DEFAULT_CONFIG_FILE_NAME;
     }
 
     QFile file(fileName);

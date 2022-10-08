@@ -1,6 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#ifndef QT_NO_DEBUG
+#define CHECK_TRUE(instruction) Q_ASSERT(instruction)
+#else
+#define CHECK_TRUE(instruction) (instruction)
+#endif
+
 #include <QMainWindow>
 #include <QDir>
 #include <QMessageBox>
@@ -16,6 +22,8 @@
 #include <QGraphicsPixmapItem>
 #include <QString>
 #include <QProcess>
+#include <QClipboard>
+#include <QGuiApplication>
 
 #define WINDOW_TITLE "Configure wal"
 
@@ -33,46 +41,32 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void enableSaveButtons(bool enable);
-
-    void setWalColorPalette();
-
-    void renderWallpaper();
-
-    void setPlasmaAccentColor(QString color);
-
 private slots:
-    void on_kdeRadioButton_clicked();
+    void enableCheckboxClicked();
+    void themeRadioButtonClicked();
+    void colorClicked();
+    void backendRadioButtonClicked();
 
-    void on_gnomeRadioButton_clicked();
-
-    void on_saveButton_clicked();
-
-    void on_saveAsButton_clicked();
-
-    void on_cancelButton_clicked();
-
-    void on_darkThemeRadioButton_clicked();
-
-    void on_lightThemeRadioButton_clicked();
-
-    void on_enableConfigCheckbox_stateChanged(int arg1);
-
-    void on_colorthiefBERadioButton_clicked();
-
-    void on_colorzBERadioButton_clicked();
-
-    void on_haishokuBERadioButton_clicked();
-
-    void on_schemer2BERadioButton_clicked();
-
-    void on_walBERadioButton_clicked();
-
-    void colorPressed();
+    void saveButtonClicked();
+    void saveAsButtonClicked();
+    void cancelButtonClicked();
 
 private:
     Ui::MainWindow *ui;
     Config *config;
     WalColors *walColors;
+    void updateWalColorPalette();
+    void copyToClipboard(QString text);
+
+    void initializeSlots();
+    void initializeThemeRadioButtons();
+    void initializeBackendRadioButtons();
+    void initializeEnableCheckbox();
+    void initializeSaveAndCloseButtons();
+    void initializeWalColorPalette();
+
+    void enableSaveButtons(bool enable);
+    void renderWallpaper();
+    void setPlasmaAccentColor(QString color);
 };
 #endif // MAINWINDOW_H

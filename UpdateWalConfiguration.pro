@@ -10,9 +10,11 @@ CONFIG += c++17
 
 SOURCES += \
     config.cpp \
+    init.cpp \
     main.cpp \
     mainwindow.cpp \
     saveconfig.cpp \
+    slots.cpp \
     walcolors.cpp
 
 HEADERS += \

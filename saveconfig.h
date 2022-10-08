@@ -13,8 +13,6 @@
 #include <QFileDialog>
 #include <mainwindow.h>
 
-#define DEFAULT_FILE_NAME "/.config/variety/scripts/theme.conf"
-
 class SaveConfig
 {
 public:
